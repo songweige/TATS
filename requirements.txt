@@ -1,0 +1,8 @@
+einops
+ftfy
+h5py
+imageio
+pytorch-lightning==1.5.4
+regex
+scikit-video
+tqdm
