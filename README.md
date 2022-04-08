@@ -21,7 +21,7 @@
 
 UCF-101: [official data](https://www.crcv.ucf.edu/data/UCF101.php), [VQGAN](https://drive.google.com/file/d/15Otpyr7v6Wnyw2HfQr_cuaRsBiSMd7Rh/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/1Nxt35mmBDuNANxHP0p8WBMWXOQ-YPkus/view?usp=sharing) <br>
 Sky-Timelapse: [official data](https://github.com/weixiong-ur/mdgan), [VQGAN](), [TATS-base]() <br>
-Taichi-HD: [official data](https://github.com/AliaksandrSiarohin/first-order-model/blob/master/data/taichi-loading/README.md), [VQGAN](), [TATS-base]() <br>
+Taichi-HD: [official data](https://github.com/AliaksandrSiarohin/first-order-model/blob/master/data/taichi-loading/README.md), [VQGAN](https://drive.google.com/file/d/1hcWIADkDsm916Xkxfz1YbljHU2ZAQFpQ/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/10j0p4PlkZwqQd7CmZmk9-4_ZboW4r03R/view?usp=sharing) <br>
 
 ## Usage
 
