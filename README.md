@@ -3,7 +3,7 @@
 [Project Website](https://songweige.github.io/projects/tats) | [Video](https://youtu.be/WZj7vW2mTJo) | [Paper](https://arxiv.org/abs/2204.03638)
 
 <p align="center">
-    <img src=assets/tats-ucf101.gif width="568" height="426" />
+    <img src=assets/tats-ucf101.gif width="852" height="284" />
 </p>
 
 **tl;dr** We propose TATS, a long video generation framework that is trained on videos with tens of frames while it is able to generate videos with thousands of frames using sliding windown.
