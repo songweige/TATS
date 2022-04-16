@@ -6,7 +6,7 @@
     <img src=assets/tats-ucf101.gif width="852" height="284" />
 </p>
 
-**tl;dr** We propose TATS, a long video generation framework that is trained on videos with tens of frames while it is able to generate videos with thousands of frames using sliding windown.
+**tl;dr** We propose TATS, a long video generation framework that is trained on videos with tens of frames while it is able to generate videos with thousands of frames using sliding window.
 
 ## Setup
 
@@ -130,4 +130,4 @@ Our code is partially built upon [VQGAN](https://github.com/CompVis/taming-trans
 
 ## License
 
-TATS is licensed under the MIT license.
+TATS is licensed under the MIT license, as found in the LICENSE file.
