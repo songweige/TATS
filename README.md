@@ -80,7 +80,7 @@ Example usages of training the VQGAN and transformers are shown below. Explanati
 #### VQGAN
 ```
 python train_vqgan.py --embedding_dim 256 --n_codes 16384 --n_hiddens 16 --downsample 4 8 8 --no_random_restart \
-                      --gpus 4 --sync_batchnorm --batch_size 2 --num_workers 6 --accumulate_grad_batches 6 \
+                      --gpus 8 --sync_batchnorm --batch_size 2 --num_workers 6 --accumulate_grad_batches 6 \
                       --progress_bar_refresh_rate 500 --max_steps 2000000 --gradient_clip_val 1.0 --lr 3e-5 \
                       --data_path {DATAPATH} --default_root_dir {CKPTPATH} \
                       --resolution 64 --sequence_length 16 --discriminator_iter_start 10000 --norm_type batch \
@@ -107,7 +107,7 @@ python train_transformer.py --num_workers 32 --val_check_interval 0.5 --progress
                         --resolution 128 --sequence_length 20 --spatial_length 128 --n_unmasked 256 --max_steps 2000000
 
 python train_transformer.py --num_workers 32 --val_check_interval 0.5 --progress_bar_refresh_rate 500 \
-                        --gpus 2 --sync_batchnorm --batch_size 1 --unconditional \
+                        --gpus 8 --sync_batchnorm --batch_size 4 --unconditional \
                         --vqvae {VQGAN-CKPT} --data_path {DATAPATH} --default_root_dir {CKPTPATH} \
                         --vocab_size 16384 --block_size 1024 --n_layer 24 --n_head 16 --n_embd 1024  \
                         --resolution 128 --sequence_length 64 --sample_every_n_latent_frames 4 --spatial_length 128 --max_steps 2000000
