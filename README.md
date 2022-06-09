@@ -9,7 +9,6 @@
 **tl;dr** We propose TATS, a long video generation framework that is trained on videos with tens of frames while it is able to generate videos with thousands of frames using sliding window.
 
 ## Setup
-
 ```
   conda create -n tats python=3.8
   conda activate tats
@@ -18,7 +17,6 @@
   pip install einops ftfy h5py imageio imageio-ffmpeg regex scikit-video tqdm
 ```
 #### Datasets and trained models
-
 UCF-101: [official data](https://www.crcv.ucf.edu/data/UCF101.php), [VQGAN](https://drive.google.com/file/d/15Otpyr7v6Wnyw2HfQr_cuaRsBiSMd7Rh/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/1Nxt35mmBDuNANxHP0p8WBMWXOQ-YPkus/view?usp=sharing) <br>
 Sky-Timelapse: [official data](https://github.com/weixiong-ur/mdgan), [VQGAN](https://drive.google.com/file/d/1ExV0XdJKlGP4lzn0X2W9307X-DE240iW/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/1mtd_mC0ZEvImlPXAdda2-4CvE-10Ljci/view?usp=sharing) <br>
 Taichi-HD: [official data](https://github.com/AliaksandrSiarohin/first-order-model/blob/master/data/taichi-loading/README.md), [VQGAN](https://drive.google.com/file/d/1hcWIADkDsm916Xkxfz1YbljHU2ZAQFpQ/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/10j0p4PlkZwqQd7CmZmk9-4_ZboW4r03R/view?usp=sharing) <br>
@@ -27,20 +25,20 @@ AudioSet-Drums: [official data](https://www.dropbox.com/s/7ykgybrc8nb3lgf/AudioS
 
 ## Synthesis
 
-1. **Short videos:** To sample the videos with the same length with the training data, use the code under `scripts/` with following flags:
+1. **Short videos:** To sample the videos of the same length with the training data, use the code under `scripts/` with the following flags:
 
 - `gpt_ckpt`: path to the trained transformer checkpoint.
 - `vqgan_ckpt`: path to the trained VQGAN checkpoint.
 - `save`: path to the save the generation results.
-- `save_videos`: indicate that videos will be saved.
-- `class_cond`: indicate that class labels are used as conditional information.
+- `save_videos`: indicates that videos will be saved.
+- `class_cond`: indicates that class labels are used as conditional information.
 
 To compute the FVD, these flags are required:
 
-- `compute_fvd`: indicate that FVD will be calculated.
+- `compute_fvd`: indicates that FVD will be calculated.
 - `data_path`: path to the dataset folder.
 - `dataset`: dataset name.
-- `image_folder`: should be used when dataset contain frames instead of videos, e.g. Sky Time-lapse.
+- `image_folder`: should be used when the dataset contains frames instead of videos, e.g. Sky Time-lapse.
 - `sample_every_n_frames`: number of frames to skip in the real video data, e.g. please set it to 4 when training on the Taichi-HD dataset.
 
 ```
@@ -50,7 +48,7 @@ python sample_vqgan_transformer_short_videos.py \
     --top_k 2048 --top_p 0.8 --dataset {DATANAME} --compute_fvd --save_videos
 ```
 
-2. **Long videos:** To sample the videos with the length longer than the training length with sliding window, use the following script.
+2. **Long videos:** To sample the videos with a length longer than the training length with a sliding window, use the following script.
 
 - `sample_length`: number of latent frames to be generated.
 - `temporal_sample_pos`: position of the frame that the sliding window approach generates.
@@ -77,18 +75,18 @@ python sample_vqgan_transformer_audio_cond.py \
 
 ## Training
 
-Example usages of training the VQGAN and transformers are shown below. Explanation of the flags that are opt to change according to different settings:
+Example usages of training the VQGAN and transformers are shown below. Explanation of the flags that are opted to change according to different settings:
 
 - `data_path`: path to the dataset folder.
-- `default_root_dir`: path to save the checkpoints and tensorboard logs.
+- `default_root_dir`: path to save the checkpoints and the tensorboard logs.
 - `vqvae`: path to the trained VQGAN checkpoint.
-- `resolution`: resolution of the training videos clips.
-- `sequence_length`: frame number of the training videos clips.
+- `resolution`: the resolution of the training video clips.
+- `sequence_length`: frame number of the training video clips.
 - `discriminator_iter_start`: the step id to start the GAN losses.
-- `image_folder`: should be used when dataset contain frames instead of videos, e.g. Sky Time-lapse.
-- `unconditional`: when no conditional information are available, e.g. Sky Time-lapse, use this flag.
+- `image_folder`: should be used when the dataset contains frames instead of videos, e.g. Sky Time-lapse.
+- `unconditional`: when no conditional information is available, e.g. Sky Time-lapse, use this flag.
 - `sample_every_n_frames`: number of frames to skip in the real video data, e.g. please set it to 4 when training on the Taichi-HD dataset.
-- `downsample`: sample rate in the dimensions of time, height and width.
+- `downsample`: sample rate in the dimensions of time, height, and width.
 - `no_random_restart`: whether to re-initialize the codebook tokens.
 
 ### VQGAN
@@ -101,9 +99,9 @@ python train_vqgan.py --embedding_dim 256 --n_codes 16384 --n_hiddens 16 --downs
                       --perceptual_weight 4 --image_gan_weight 1 --video_gan_weight 1  --gan_feat_weight 4
 ```
 
-### Transforemer
+### Transformer
 
-#### TATS-base Transforemer
+#### TATS-base Transformer
 
 ```
 python train_transformer.py --num_workers 32 --val_check_interval 0.5 --progress_bar_refresh_rate 500 \
@@ -120,7 +118,7 @@ To train a conditional transformer, remove the `--unconditional` flag and use th
 - `text_cond`: use this flag to indicate BPE encoded text.
 
 
-#### TATS-hierarchical Transforemer
+#### TATS-hierarchical Transformer
 ```
 python train_transformer.py --num_workers 32 --val_check_interval 0.5 --progress_bar_refresh_rate 500 \
                         --gpus 8 --sync_batchnorm --batch_size 3 --unconditional \
