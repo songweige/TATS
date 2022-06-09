@@ -22,12 +22,12 @@
 UCF-101: [official data](https://www.crcv.ucf.edu/data/UCF101.php), [VQGAN](https://drive.google.com/file/d/15Otpyr7v6Wnyw2HfQr_cuaRsBiSMd7Rh/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/1Nxt35mmBDuNANxHP0p8WBMWXOQ-YPkus/view?usp=sharing) <br>
 Sky-Timelapse: [official data](https://github.com/weixiong-ur/mdgan), [VQGAN](https://drive.google.com/file/d/1ExV0XdJKlGP4lzn0X2W9307X-DE240iW/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/1mtd_mC0ZEvImlPXAdda2-4CvE-10Ljci/view?usp=sharing) <br>
 Taichi-HD: [official data](https://github.com/AliaksandrSiarohin/first-order-model/blob/master/data/taichi-loading/README.md), [VQGAN](https://drive.google.com/file/d/1hcWIADkDsm916Xkxfz1YbljHU2ZAQFpQ/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/10j0p4PlkZwqQd7CmZmk9-4_ZboW4r03R/view?usp=sharing) <br>
+MUGEN: [official data](https://mugen-org.github.io/download), [VQGAN](https://www.dropbox.com/s/1fjfvapsre3jzjv/vqgan_mugen_256_41616_epoch%3D18-step%3D19999.ckpt?dl=1), [TATS-base](https://www.dropbox.com/s/45y44klhv04yzx8/coinrun_vqvae_lpips_gpt_16_256_41616_19999__epoch%3D59-step%3D379999-train.ckpt?dl=1) <br>
+AudioSet-Drums: [official data](https://www.dropbox.com/s/7ykgybrc8nb3lgf/AudioSet_Drums.zip?dl=0), [Video-VQGAN](https://drive.google.com/file/d/1ZpQkVUoGWShL2M8phTzyO6W9-uYPJ40J/view?usp=sharing), [STFT-VQGAN](https://drive.google.com/file/d/1CNQLfgazb7OI_c69RWUdhO56mg-9HN-o/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/1eHP0eSv3s-NGAv60HbF3AZsp3SBvR70u/view?usp=sharing) <br>
 
-## Usage
+## Synthesis
 
-### Synthesis
-
-To sample the videos with the same length with the training data, use the code under `scripts/` with following flags:
+1. **Short videos:** To sample the videos with the same length with the training data, use the code under `scripts/` with following flags:
 
 - `gpt_ckpt`: path to the trained transformer checkpoint.
 - `vqgan_ckpt`: path to the trained VQGAN checkpoint.
@@ -50,7 +50,7 @@ python sample_vqgan_transformer_short_videos.py \
     --top_k 2048 --top_p 0.8 --dataset {DATANAME} --compute_fvd --save_videos
 ```
 
-To sample the videos with the length longer than the training length with sliding window, use the following script.
+2. **Long videos:** To sample the videos with the length longer than the training length with sliding window, use the following script.
 
 - `sample_length`: number of latent frames to be generated.
 - `temporal_sample_pos`: position of the frame that the sliding window approach generates.
@@ -61,7 +61,21 @@ python sample_vqgan_transformer_long_videos.py \
     --dataset ucf101 --class_cond --sample_length 16 --temporal_sample_pos 1 --batch_size 5 --n_sample 5 --save_videos
 ```
 
-### Training
+3. **Text to video:** To sample MUGEN videos conditioned on the text, check this [colab notebook](https://colab.research.google.com/drive/1yblr4IolH91ZA61FfZyk2n8rvndCIFmm?usp=sharing) for an example!
+
+
+4. **Audio to video:** To sample drum videos conditioned on the audio, use the following script.
+
+- `stft_vqgan_ckpt`: path to the trained VQGAN checkpoint for STFT features.
+
+```
+python sample_vqgan_transformer_audio_cond.py \
+    --gpt_ckpt {GPT-CKPT} --vqgan_ckpt {VQGAN-CKPT} --stft_vqgan_ckpt {STFT-CKPT} \
+    --dataset drum --n_sample 10
+```
+
+
+## Training
 
 Example usages of training the VQGAN and transformers are shown below. Explanation of the flags that are opt to change according to different settings:
 
@@ -77,15 +91,17 @@ Example usages of training the VQGAN and transformers are shown below. Explanati
 - `downsample`: sample rate in the dimensions of time, height and width.
 - `no_random_restart`: whether to re-initialize the codebook tokens.
 
-#### VQGAN
+### VQGAN
 ```
 python train_vqgan.py --embedding_dim 256 --n_codes 16384 --n_hiddens 16 --downsample 4 8 8 --no_random_restart \
-                      --gpus 8 --sync_batchnorm --batch_size 2 --num_workers 6 --accumulate_grad_batches 6 \
+                      --gpus 8 --sync_batchnorm --batch_size 2 --num_workers 32 --accumulate_grad_batches 6 \
                       --progress_bar_refresh_rate 500 --max_steps 2000000 --gradient_clip_val 1.0 --lr 3e-5 \
                       --data_path {DATAPATH} --default_root_dir {CKPTPATH} \
-                      --resolution 64 --sequence_length 16 --discriminator_iter_start 10000 --norm_type batch \
+                      --resolution 128 --sequence_length 16 --discriminator_iter_start 10000 --norm_type batch \
                       --perceptual_weight 4 --image_gan_weight 1 --video_gan_weight 1  --gan_feat_weight 4
 ```
+
+### Transforemer
 
 #### TATS-base Transforemer
 
@@ -96,6 +112,12 @@ python train_transformer.py --num_workers 32 --val_check_interval 0.5 --progress
                         --vocab_size 16384 --block_size 1024 --n_layer 24 --n_head 16 --n_embd 1024  \
                         --resolution 128 --sequence_length 16 --max_steps 2000000
 ```
+
+To train a conditional transformer, remove the `--unconditional` flag and use the following flags
+
+- `cond_stage_key`: what kind of conditional information to be used. It can be `label`, `text`, or `stft`.
+- `stft_vqvae`: path to the trained VQGAN checkpoint for STFT features.
+- `text_cond`: use this flag to indicate BPE encoded text.
 
 
 #### TATS-hierarchical Transforemer
@@ -112,6 +134,7 @@ python train_transformer.py --num_workers 32 --val_check_interval 0.5 --progress
                         --vocab_size 16384 --block_size 1024 --n_layer 24 --n_head 16 --n_embd 1024  \
                         --resolution 128 --sequence_length 64 --sample_every_n_latent_frames 4 --spatial_length 128 --max_steps 2000000
 ```
+
 
 ## Acknowledgments
 Our code is partially built upon [VQGAN](https://github.com/CompVis/taming-transformers) and

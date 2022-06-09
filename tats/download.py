@@ -53,10 +53,12 @@ def load_vqgan(vqgan_ckpt, device=torch.device('cpu')):
 
     return vqgan
 
-def load_transformer(gpt_ckpt, vqgan_ckpt, device=torch.device('cpu')):
+def load_transformer(gpt_ckpt, vqgan_ckpt, stft_vqgan_ckpt='', device=torch.device('cpu')):
     from pytorch_lightning.utilities.cloud_io import load as pl_load
     checkpoint = pl_load(gpt_ckpt)
     checkpoint['hyper_parameters']['args'].vqvae = vqgan_ckpt
+    if stft_vqgan_ckpt:
+        checkpoint['hyper_parameters']['args'].stft_vqvae = stft_vqgan_ckpt
     gpt = Net2NetTransformer._load_model_state(checkpoint)
     gpt.eval()
 

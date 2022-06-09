@@ -34,10 +34,8 @@ class Net2NetTransformer(pl.LightningModule):
         self.first_stage_key = first_stage_key
         self.cond_stage_key = cond_stage_key
         self.vtokens = args.vtokens
-        if hasattr(args, 'sample_every_n_latent_frames'):
-            self.sample_every_n_latent_frames = args.sample_every_n_latent_frames
-        else:
-            self.sample_every_n_latent_frames = 0
+        self.sample_every_n_latent_frames = getattr(args, 'sample_every_n_latent_frames', 0)
+        
         self.init_first_stage_from_ckpt(args)
         self.init_cond_stage_from_ckpt(args)
 
