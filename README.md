@@ -1,4 +1,4 @@
-# Long Video Generation with Time-Agnostic VQGAN and Time-Sensitive Transformer
+# Long Video Generation with Time-Agnostic VQGAN and Time-Sensitive Transformer (ECCV 2022)
 
 [Project Website](https://songweige.github.io/projects/tats) | [Video](https://youtu.be/WZj7vW2mTJo) | [Paper](https://arxiv.org/abs/2204.03638)
 
@@ -39,7 +39,7 @@ To compute the FVD, these flags are required:
 - `data_path`: path to the dataset folder.
 - `dataset`: dataset name.
 - `image_folder`: should be used when the dataset contains frames instead of videos, e.g. Sky Time-lapse.
-- `sample_every_n_frames`: number of frames to skip in the real video data, e.g. please set it to 4 when training on the Taichi-HD dataset.
+- `sample_every_n_frames`: number of frames to skip in the real video data, e.g. please set it to 4 when using Taichi-HD dataset.
 
 ```
 python sample_vqgan_transformer_short_videos.py \
