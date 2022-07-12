@@ -142,10 +142,10 @@ Our code is partially built upon [VQGAN](https://github.com/CompVis/taming-trans
 ## Citation
 ```
 @article{ge2022long,
-         title={Long Video Generation with Time-Agnostic VQGAN and Time-Sensitive Transformer},
-         author={Ge, Songwei and Hayes, Thomas and Yang, Harry and Yin, Xi and Pang, Guan and Jacobs, David and Huang, Jia-Bin and Parikh, Devi},
-         journal={arXiv preprint arXiv:2204.03638},
-         year={2022}
+    title     = {Long Video Generation with Time-Agnostic VQGAN and Time-Sensitive Transformer},
+    author    = {Ge, Songwei and Hayes, Thomas and Yang, Harry and Yin, Xi and Pang, Guan and Jacobs, David and Huang, Jia-Bin and Parikh, Devi},
+    booktitle = {European Conference on Computer Vision (ECCV)},   
+    year      = {2022},
 }
 ```
 
