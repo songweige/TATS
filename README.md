@@ -3,8 +3,12 @@
 [Project Website](https://songweige.github.io/projects/tats) | [Video](https://youtu.be/WZj7vW2mTJo) | [Paper](https://arxiv.org/abs/2204.03638)
 
 <p align="center">
-    <img src=assets/tats-ucf101.gif width="852" height="284" />
+    <img src=https://www.cs.umd.edu/~songweig/tats/repo_asset/tats-ucf101.gif width="852" height="284" />
 </p>
+<p align="center">
+    <img src=https://www.cs.umd.edu/~songweig/tats/repo_asset/tats_sky_long_high_res.gif width="852" height="256" />
+</p>
+
 
 **tl;dr** We propose TATS, a long video generation framework that is trained on videos with tens of frames while it is able to generate videos with thousands of frames using sliding window.
 
@@ -91,7 +95,7 @@ Example usages of training the VQGAN and transformers are shown below. Explanati
 
 ### VQGAN
 ```
-python train_vqgan.py --embedding_dim 256 --n_codes 16384 --n_hiddens 16 --downsample 4 8 8 --no_random_restart \
+python train_vqgan.py --embedding_dim 256 --n_codes 16384 --n_hiddens 32 --downsample 4 8 8 --no_random_restart \
                       --gpus 8 --sync_batchnorm --batch_size 2 --num_workers 32 --accumulate_grad_batches 6 \
                       --progress_bar_refresh_rate 500 --max_steps 2000000 --gradient_clip_val 1.0 --lr 3e-5 \
                       --data_path {DATAPATH} --default_root_dir {CKPTPATH} \
