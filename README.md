@@ -6,7 +6,7 @@
     <img src=assets/tats-ucf101.gif width="852" height="284" />
 </p>
 <p align="center">
-    <img src=assets/tats_sky_long_high_res.gif width="852" height="256" />
+    <img src=assets/tats_sky_long_high_res.gif width="852" height="210" />
 </p>
 
 
