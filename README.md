@@ -3,10 +3,10 @@
 [Project Website](https://songweige.github.io/projects/tats) | [Video](https://youtu.be/WZj7vW2mTJo) | [Paper](https://arxiv.org/abs/2204.03638)
 
 <p align="center">
-    <img src=https://www.cs.umd.edu/~songweig/tats/repo_asset/tats-ucf101.gif width="852" height="284" />
+    <img src=assets/tats-ucf101.gif width="852" height="284" />
 </p>
 <p align="center">
-    <img src=https://www.cs.umd.edu/~songweig/tats/repo_asset/tats_sky_long_high_res.gif width="852" height="256" />
+    <img src=assets/tats_sky_long_high_res.gif width="852" height="256" />
 </p>
 
 
