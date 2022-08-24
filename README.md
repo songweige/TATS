@@ -76,6 +76,18 @@ python sample_vqgan_transformer_audio_cond.py \
     --dataset drum --n_sample 10
 ```
 
+5. **Hierarchical sampling:** To sample the videos with a length longer than the training length with the hierarchical models, first an AR transformer and then an interpolation transformer, use the following checkpoints and scripts.
+
+Sky-Timelapse: [VQGAN](https://drive.google.com/file/d/1ExV0XdJKlGP4lzn0X2W9307X-DE240iW/view?usp=sharing), [AR-transformer](https://drive.google.com/file/d/15ay8Lrra6opBU4o__CnrHfR2Caq2G-1G/view?usp=sharing), [Interpolation-transformer](https://drive.google.com/file/d/1WJiH3qh1_fe3PLbzKdRKR-h6iFudtAfr/view?usp=sharing) <br>
+Taichi-HD: [VQGAN](https://drive.google.com/file/d/15zujnX54wfqhhIToocvyHhdpbsxcTIv0/view?usp=sharing), [AR-transformer](https://drive.google.com/file/d/1TrjbpGwCkFhvsiQrnl5EH76HYZoWszbY/view?usp=sharing), [Interpolation-transformer](https://drive.google.com/file/d/1EQnV3IqmwFsEdza7gz4PUeUqr9bINPkz/view?usp=sharing) <br>
+
+- `top_k_init`, `top_p_init`: these allows different `top_k` and `top_p` parameters when sampling the initial frames. For example, one can use `--top_k_init 16384 --top_p_init 0.99` when sampling the sky videos to increase the diversity.
+
+```
+python sample_vqgan_transformer_hierarchical.py \
+    --ckpt1 {AR-CKPT} --CKPT2 {Interpolation-CKPT} --vqgan {VQGAN-CKPT} \
+    --dataset sky --top_k_init 2048 --top_p_init 0.8 --top_k 2048 --top_p 0.8 --temporal_sample_pos 1
+```
 
 ## Training
 
@@ -146,10 +158,10 @@ Our code is partially built upon [VQGAN](https://github.com/CompVis/taming-trans
 ## Citation
 ```
 @article{ge2022long,
-    title     = {Long Video Generation with Time-Agnostic VQGAN and Time-Sensitive Transformer},
-    author    = {Ge, Songwei and Hayes, Thomas and Yang, Harry and Yin, Xi and Pang, Guan and Jacobs, David and Huang, Jia-Bin and Parikh, Devi},
-    booktitle = {European Conference on Computer Vision (ECCV)},   
-    year      = {2022},
+  title={Long video generation with time-agnostic vqgan and time-sensitive transformer},
+  author={Ge, Songwei and Hayes, Thomas and Yang, Harry and Yin, Xi and Pang, Guan and Jacobs, David and Huang, Jia-Bin and Parikh, Devi},
+  journal={arXiv preprint arXiv:2204.03638},
+  year={2022}
 }
 ```
 
