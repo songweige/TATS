@@ -21,7 +21,7 @@
   pip install einops ftfy h5py imageio imageio-ffmpeg regex scikit-video tqdm
 ```
 #### Datasets and trained models
-UCF-101: [official data](https://www.crcv.ucf.edu/data/UCF101.php), [VQGAN](https://drive.google.com/file/d/15Otpyr7v6Wnyw2HfQr_cuaRsBiSMd7Rh/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/1Nxt35mmBDuNANxHP0p8WBMWXOQ-YPkus/view?usp=sharing) <br>
+UCF-101: [official data](https://www.crcv.ucf.edu/data/UCF101.php), [VQGAN](https://drive.google.com/file/d/15Otpyr7v6Wnyw2HfQr_cuaRsBiSMd7Rh/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/1Nxt35mmBDuNANxHP0p8WBMWXOQ-YPkus/view?usp=sharing), [TATS-base-uncond](https://drive.google.com/file/d/1pQsMdO2b84m7asp_lNg44c_UE5DUC6pa/view?usp=sharing) <br>
 Sky-Timelapse: [official data](https://github.com/weixiong-ur/mdgan), [VQGAN](https://drive.google.com/file/d/1ExV0XdJKlGP4lzn0X2W9307X-DE240iW/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/1mtd_mC0ZEvImlPXAdda2-4CvE-10Ljci/view?usp=sharing) <br>
 Taichi-HD: [official data](https://github.com/AliaksandrSiarohin/first-order-model/blob/master/data/taichi-loading/README.md), [VQGAN](https://drive.google.com/file/d/1hcWIADkDsm916Xkxfz1YbljHU2ZAQFpQ/view?usp=sharing), [TATS-base](https://drive.google.com/file/d/10j0p4PlkZwqQd7CmZmk9-4_ZboW4r03R/view?usp=sharing) <br>
 MUGEN: [official data](https://mugen-org.github.io/download), [VQGAN](https://www.dropbox.com/s/1fjfvapsre3jzjv/vqgan_mugen_256_41616_epoch%3D18-step%3D19999.ckpt?dl=1), [TATS-base](https://www.dropbox.com/s/45y44klhv04yzx8/coinrun_vqvae_lpips_gpt_16_256_41616_19999__epoch%3D59-step%3D379999-train.ckpt?dl=1) <br>
@@ -78,8 +78,8 @@ python sample_vqgan_transformer_audio_cond.py \
 
 5. **Hierarchical sampling:** To sample the videos with a length longer than the training length with the hierarchical models, first an AR transformer and then an interpolation transformer, use the following checkpoints and scripts.
 
-Sky-Timelapse: [VQGAN](https://drive.google.com/file/d/1ExV0XdJKlGP4lzn0X2W9307X-DE240iW/view?usp=sharing), [AR-transformer](https://drive.google.com/file/d/15ay8Lrra6opBU4o__CnrHfR2Caq2G-1G/view?usp=sharing), [Interpolation-transformer](https://drive.google.com/file/d/1WJiH3qh1_fe3PLbzKdRKR-h6iFudtAfr/view?usp=sharing) <br>
-Taichi-HD: [VQGAN](https://drive.google.com/file/d/15zujnX54wfqhhIToocvyHhdpbsxcTIv0/view?usp=sharing), [AR-transformer](https://drive.google.com/file/d/1TrjbpGwCkFhvsiQrnl5EH76HYZoWszbY/view?usp=sharing), [Interpolation-transformer](https://drive.google.com/file/d/1EQnV3IqmwFsEdza7gz4PUeUqr9bINPkz/view?usp=sharing) <br>
+- Sky checkpoints: [VQGAN](https://drive.google.com/file/d/1ExV0XdJKlGP4lzn0X2W9307X-DE240iW/view?usp=sharing), [AR-transformer](https://drive.google.com/file/d/15ay8Lrra6opBU4o__CnrHfR2Caq2G-1G/view?usp=sharing), [Interpolation-transformer](https://drive.google.com/file/d/1WJiH3qh1_fe3PLbzKdRKR-h6iFudtAfr/view?usp=sharing) <br>
+- Taichi checkpoints: [VQGAN](https://drive.google.com/file/d/15zujnX54wfqhhIToocvyHhdpbsxcTIv0/view?usp=sharing), [AR-transformer](https://drive.google.com/file/d/1TrjbpGwCkFhvsiQrnl5EH76HYZoWszbY/view?usp=sharing), [Interpolation-transformer](https://drive.google.com/file/d/1EQnV3IqmwFsEdza7gz4PUeUqr9bINPkz/view?usp=sharing) <br>
 
 - `top_k_init`, `top_p_init`: these allows different `top_k` and `top_p` parameters when sampling the initial frames. For example, one can use `--top_k_init 16384 --top_p_init 0.99` when sampling the sky videos to increase the diversity.
 
