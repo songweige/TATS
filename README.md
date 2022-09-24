@@ -44,11 +44,12 @@ To compute the FVD, these flags are required:
 - `dataset`: dataset name.
 - `image_folder`: should be used when the dataset contains frames instead of videos, e.g. Sky Time-lapse.
 - `sample_every_n_frames`: number of frames to skip in the real video data, e.g. please set it to 4 when using Taichi-HD dataset.
+- `resolution`: the resolution of real videos to compute FVD, e.g. 128 for UCF, Sky, and Taichi, and 256 for MUGEN.
 
 ```
 python sample_vqgan_transformer_short_videos.py \
     --gpt_ckpt {GPT-CKPT} --vqgan_ckpt {VQGAN-CKPT} --class_cond \
-    --save {SAVEPATH} --data_path {DATAPATH} --batch_size 16 \
+    --save {SAVEPATH} --data_path {DATAPATH} --batch_size 16 --resolution 128 \
     --top_k 2048 --top_p 0.8 --dataset {DATANAME} --compute_fvd --save_videos
 ```
 
