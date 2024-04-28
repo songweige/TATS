@@ -12,6 +12,8 @@
 
 **tl;dr** We propose TATS, a long video generation framework that is trained on videos with tens of frames while it is able to generate videos with thousands of frames using sliding window.
 
+[New!] We perform an analysis of the cases where FVD disagrees with human judgment, checkout our [project webpage](https://content-debiased-fvd.github.io/) for more information!
+
 ## Setup
 ```
   conda create -n tats python=3.8
